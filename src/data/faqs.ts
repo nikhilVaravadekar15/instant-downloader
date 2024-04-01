@@ -6,11 +6,11 @@ const faqs: TStep[] = [
     description:
       "Yes Instant-downloader is totally free and will stay free, but because it's free we use advertising to cover the costs of running this service and maintaining it.",
   },
-  {
-    title: "Can I download videos from all the major social media sites?",
-    description:
-      "Yes, Instant-downloader supports downloading videos from all the major social media sites.",
-  },
+  // {
+  //   title: "Can I download videos from all the major social media sites?",
+  //   description:
+  //     "Yes, Instant-downloader supports downloading videos from all the major social media sites.",
+  // },
   {
     title: "Can I use Instant-downloader on mobile and tablet devices?",
     description:
@@ -19,7 +19,7 @@ const faqs: TStep[] = [
   {
     title: "I'm getting errors although the site is listed as supported",
     description:
-      "First please make sure the link is correct, also make sure that the video you are downloading is not private or requires login to be watched because Instant-downloader cannot download such videos, and if you still get any errors please contact us.",
+      "First please make sure the link is correct, also make sure that the video you are downloading is not private or requires login to be watched because Instant-downloader cannot download such videos.",
   },
   {
     title: "Can I download copyrighted material?",
@@ -29,7 +29,7 @@ const faqs: TStep[] = [
   {
     title: "How can I check if a certain website is supported?",
     description:
-      "Instant-downloader supports many websites, to check if a website is supported you can simply try a link from that website, also you can check our Supported Sites page for a complete list of sites and search them by name.",
+      "Instant-downloader currently youtube.com, we are continuously working to add support for major social media websites, to check if a website is supported you can simply try a link from that website",
   },
   {
     title: "What operating systems are supported?",
