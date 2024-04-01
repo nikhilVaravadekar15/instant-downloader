@@ -29,7 +29,6 @@ export default function Search() {
 
   const { isLoading, mutate } = useMutation({
     mutationFn: async ({ url }: TUrl) => {
-      console.log(url);
       const response = await getData({ url });
       return response;
     },
@@ -41,8 +40,13 @@ export default function Search() {
       reset();
       scroll("#download-section");
     },
-    onError: (error) => {
-      console.log(error);
+    onError: (error: any) => {
+      toast({
+        variant: "destructive",
+        title: `${error?.response?.data?.message}`,
+        description:
+          "We are extremely sorry for the inconvenience, Please try again later.",
+      });
     },
   });
 
