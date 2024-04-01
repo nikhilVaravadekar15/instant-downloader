@@ -2,16 +2,22 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+1st, Update .env:
+```
+    sudo cp .env.example .env
+```
+```
+    NEXT_PUBLIC_BASE_API_URL=http://localhost:3000
+```
+
+2nd, run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+    npm run dev
+    # or
+    yarn dev
+    # or
+    pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
