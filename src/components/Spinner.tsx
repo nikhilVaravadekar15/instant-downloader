@@ -1,9 +1,14 @@
+import { cn } from "@/lib/utils";
 import { Loader2 } from "lucide-react";
 
-export default function Spinner() {
+type Props = {
+  color?: string;
+};
+
+export default function Spinner({ color }: Props) {
   return (
     <div className="flex items-center justify-center">
-      <Loader2 className="h-8 w-8 animate-spin text-[#0059ff]" />
+      <Loader2 className={cn("h-8 w-8 animate-spin text-[#0059ff]", color)} />
     </div>
   );
 }

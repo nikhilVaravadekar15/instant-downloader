@@ -110,7 +110,11 @@ export default function Search() {
               disabled={isLoading}
               className="text-white absolute right-1 bottom-1 bg-blue-600 hover:bg-blue-700 font-medium rounded-3xl text-sm p-5"
             >
-              {isLoading ? <Spinner /> : <Download size={"1.5rem"} />}
+              {isLoading ? (
+                <Spinner color={"text-white"} />
+              ) : (
+                <Download size={"1.5rem"} />
+              )}
             </Button>
           </div>
           <div className="my-4 text-sm font-medium text-red-600 flex items-center justify-center gap-2 md:text-base">
