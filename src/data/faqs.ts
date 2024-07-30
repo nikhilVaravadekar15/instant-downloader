@@ -24,7 +24,7 @@ const faqs: TStep[] = [
   {
     title: "How can I check if a certain website is supported?",
     description:
-      "Instant-downloader currently youtube.com, we are continuously working to add support for major social media websites, to check if a website is supported you can simply try a link from that website",
+      "Instant-downloader currently supports youtube.com, we are continuously working to add support for major social media websites, to check if a website is supported you can simply try a link from that website",
   },
   {
     title: "What operating systems are supported?",
@@ -35,11 +35,6 @@ const faqs: TStep[] = [
     title: "What browsers are supported?",
     description:
       "We only support modern browsers, to ensure you get the best experience download and install the latest version of your favorite browser.",
-  },
-  {
-    title: "Can I download only the audio from a video?",
-    description:
-      "Some sites provide audio files that will be shown on the download page, if you cannot find any audio download buttons then you can convert the video to any audio format like MP3, M4A, WAV, AAC and more.",
   },
 ];
 
