@@ -1,0 +1,19 @@
+# dependencies
+bin
+include
+lib
+lib64
+pyvenv.cfg
+share
+__pycache__
+
+# local env files
+.env
+.env*.local
+
+# vercel
+.vercel
+
+# logs
+/logs
+*.log*
