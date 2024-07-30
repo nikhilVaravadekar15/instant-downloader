@@ -1,23 +1,5 @@
 import { TStep } from "@/types/types";
 
-export const usageSteps: TStep[] = [
-  {
-    title: "Copy the URL",
-    description:
-      "First, open the video that you want to download on YouTube and copy its URL.",
-  },
-  {
-    title: "Paste the URL",
-    description:
-      "Paste the YouTube URL into the box on the top of this page and click on the “Download” button.",
-  },
-  {
-    title: "Download the video",
-    description:
-      "Now, the video will be automatically converted to MP4 format and saved to your device for you to use. Enjoy!",
-  },
-];
-
 export const keyFeatures: TStep[] = [
   {
     icon: "🪄",

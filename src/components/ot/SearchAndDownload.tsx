@@ -1,12 +1,11 @@
 "use client";
 
 import React from "react";
-import ytdl from "ytdl-core";
 import Link from "next/link";
 import Image from "next/image";
 import { getData } from "@/http";
 import { formSchema } from "@/zod";
-import { TUrl } from "@/types/types";
+import { TAudio, TInfo, TUrl, TVideoDetails } from "@/types/types";
 import { scroll } from "@/lib/utils";
 import { useForm } from "react-hook-form";
 import Table from "@/components/ot/Table";
@@ -17,15 +16,14 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ErrorMessage } from "@hookform/error-message";
-import { AudioLines, Clapperboard, Download } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Download } from "lucide-react";
 
 export default function Search() {
   const { toast } = useToast();
-  const [videoDetails, setVideoDetails] =
-    React.useState<ytdl.MoreVideoDetails>();
-  const [videos, setVideos] = React.useState<ytdl.videoFormat[]>([]);
-  const [audios, setAudios] = React.useState<ytdl.videoFormat[]>([]);
+  const [audios, setAudios] = React.useState<Array<TAudio>>([]);
+  const [videoDetails, setVideoDetails] = React.useState<TVideoDetails | null>(
+    null
+  );
 
   const { isLoading, mutate } = useMutation({
     mutationFn: async ({ url }: TUrl) => {
@@ -33,9 +31,8 @@ export default function Search() {
       return response;
     },
     onSuccess: (data) => {
-      const response = data.data;
+      const response: TInfo = data.data;
       setVideoDetails(response.videoDetails);
-      setVideos(response.videos);
       setAudios(response.audios);
       reset();
       scroll("#download-section");
@@ -84,11 +81,13 @@ export default function Search() {
             and
             <span className="mx-2 text-blue-600 sm:mx-4">instant</span>
             <br />
-            video downloader
+            <span className="mx-2 text-red-600 sm:mx-4">youtube</span>
+            audio downloader
           </h1>
         </div>
         <p className="mt-3 w-10/12 text-base text-gray-700 sm:mt-4 sm:w-full sm:text-xl lg:text-lg lg:mt-5 xl:text-xl xl:mt-6 dark:text-gray-300">
-          Free online video downloader for youtube, shorts and youtube-music
+          Free online youtube to audio downloader for youtube, shorts and
+          youtube-music
         </p>
         <form
           className="w-11/12 mt-4 md:w-5/6"
@@ -123,63 +122,25 @@ export default function Search() {
         </form>
       </div>
       <div id="#download-section"></div>
-      {videoDetails && videos.length > 0 && audios.length > 0 && (
+      {videoDetails && audios.length > 0 && (
         <section className="w-screen h-screen flex items-center justify-center">
           <div className="w-full p-2 gap-4 mx-auto flex items-center justify-center flex-col text-center sm:p-8 sm:w-[768px] sm:flex-row sm:items-start sm:justify-around lg:w-[896px] rounded-lg shadow-md">
-            <div className="w-[300px] sm:flex sm:flex-col sm:items-center sm:justify-center">
-              <Link
-                href={`${videoDetails.video_url}`}
-                className="flex items-center justify-center"
-                target={"_blank"}
-              >
+            <div className="w-[300px] flex flex-col items-center justify-center md:items-start">
+              <Link href={videoDetails?.original_url!} target={"_blank"}>
                 <Image
                   width={256}
                   height={256}
                   alt={"thumbnail"}
                   draggable="false"
                   className="rounded-lg cursor-pointer"
-                  src={`${
-                    videoDetails.thumbnails.sort((a, b) => a.height - b.height)[
-                      videoDetails.thumbnails.length - 1
-                    ].url
-                  }`}
+                  src={videoDetails.thumbnail}
                 />
               </Link>
               <h1 className="mb-1 mt-2 text-center font-bold text-[#222] block sm:text-left dark:text-white">
                 {videoDetails.title}
               </h1>
             </div>
-            <Tabs
-              defaultValue="video"
-              className="w-full p-1 rounded-lg border sm:w-10/12 sm:p-2"
-            >
-              <TabsList className="h-14 w-full rounded-full">
-                <TabsTrigger
-                  className="w-full py-3 rounded-full data-[state=active]:border data-[state=active]:border-blue-500"
-                  value="video"
-                >
-                  <>
-                    <Clapperboard className="w-6 h-6" />
-                    Video
-                  </>
-                </TabsTrigger>
-                <TabsTrigger
-                  className="w-full py-3 rounded-full data-[state=active]:border data-[state=active]:border-blue-500"
-                  value="audio"
-                >
-                  <>
-                    <AudioLines className="w-6 h-6" />
-                    Audio
-                  </>
-                </TabsTrigger>
-              </TabsList>
-              <TabsContent value="video" className="my-4">
-                <Table type="video" data={videos} />
-              </TabsContent>
-              <TabsContent value="audio" className="my-4">
-                <Table type="audio" data={audios} />
-              </TabsContent>
-            </Tabs>
+            <Table data={audios} />
           </div>
         </section>
       )}

@@ -7,7 +7,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
     sudo cp .env.example .env
 ```
 ```
-    NEXT_PUBLIC_BASE_API_URL=http://localhost:3000
+    NEXT_PUBLIC_FAST_API_URL=http://localhost:8000
 ```
 
 2nd, run the development server:

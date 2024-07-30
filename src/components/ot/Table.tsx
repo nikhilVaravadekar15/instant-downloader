@@ -1,13 +1,12 @@
 import React from "react";
 import Link from "next/link";
-import ytdl from "ytdl-core";
+import { TAudio } from "@/types/types";
 
 type TTabledata = {
-  type: "video" | "audio";
-  data: ytdl.videoFormat[];
+  data: Array<TAudio>;
 };
 
-export default function Table({ type, data }: TTabledata) {
+export default function Table({ data }: TTabledata) {
   return (
     <div className="relative overflow-x-auto sm:rounded-lg border">
       <table className="w-full text-sm text-left text-gray-500">
@@ -25,25 +24,20 @@ export default function Table({ type, data }: TTabledata) {
           </tr>
         </thead>
         <tbody>
-          {data.map((row: ytdl.videoFormat, index: number) => {
+          {data.map((row: TAudio, index: number) => {
             return (
               <tr
                 key={index}
                 className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
               >
                 <td className="px-6 py-4 flex flex-col text-gray-700 dark:text-gray-200">
-                  {type === "video" && (
-                    <span className="w-fit p-1 rounded text-xs font-semibold text-white bg-[#337ab7]">
-                      {row.qualityLabel}
-                    </span>
-                  )}
-                  {type === "audio" && (
-                    <span className="w-fit p-1 rounded text-xs font-semibold text-white bg-[#337ab7]">
-                      {row.container}
-                    </span>
-                  )}
+                  <span className="w-fit p-1 rounded text-xs font-semibold text-white bg-[#337ab7]">
+                    {row?.audio_ext}
+                  </span>
                 </td>
-                <td className="px-6 py-4 dark:text-gray-200">{row.quality}</td>
+                <td className="px-6 py-4 dark:text-gray-200">
+                  {Number(row?.filesize / (1024 * 1024)).toFixed(1)}MB
+                </td>
                 <td className="px-6 py-4 text-left">
                   <Link
                     href={row?.url}

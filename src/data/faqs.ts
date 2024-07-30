@@ -6,11 +6,6 @@ const faqs: TStep[] = [
     description:
       "Yes Instant-downloader is totally free and will stay free, but because it's free we use advertising to cover the costs of running this service and maintaining it.",
   },
-  // {
-  //   title: "Can I download videos from all the major social media sites?",
-  //   description:
-  //     "Yes, Instant-downloader supports downloading videos from all the major social media sites.",
-  // },
   {
     title: "Can I use Instant-downloader on mobile and tablet devices?",
     description:
