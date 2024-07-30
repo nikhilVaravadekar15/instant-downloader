@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <QueryProvider>
-        <body className="dark">
+        <body className="w-screen h-screen dark">
           {children}
           <Toaster />
         </body>
